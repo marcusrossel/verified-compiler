@@ -1,4 +1,4 @@
--- Lables for the possible types of "high-level" terms.
+-- Labels for the possible types of "high-level" terms.
 inductive Ty
   | bool
   | nat
