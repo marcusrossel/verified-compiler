@@ -1,0 +1,6 @@
+name = "VerifiedCompiler"
+version = "0.1.0"
+defaultTargets = ["VerifiedCompiler"]
+
+[[lean_lib]]
+name = "VerifiedCompiler"
