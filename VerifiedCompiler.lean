@@ -165,8 +165,8 @@ def Term.lower : Term τ → Program
     let n := lower neg
     lower cond ++ [.jez (p.length + 1)] ++ p ++ [.jmp n.length] ++ n
 
--- The notion of (heterogeneous) equivalence between a high-level term and a stack machine program.
--- This is the core notion of semantics preservation for lowering and, thus, our compiler.
+-- (Heterogeneous) equivalence between a high-level term and a stack machine program.
+-- This is the core notion of semantic preservation for lowering and, thus, for the compiler.
 def HEquiv (t : Term τ) (prog : Program) : Prop :=
   prog.exec [] = some [t.eval.toNat]
 
