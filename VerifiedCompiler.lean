@@ -98,8 +98,8 @@ abbrev Stack := List Nat
 
 -- A notion of conjunction over natural numbers.
 def Nat.conj : Nat → Nat → Nat
-  | 1, 1 => 1
-  | _, _ => 0
+  | 0, _ | _, 0 => 0
+  | _, _        => 1
 
 -- When executing an instruction we return an `Instruction.Result` consisting of an updated stack
 -- and a jump-offset.
@@ -135,6 +135,7 @@ theorem goto_decreasing {p : Program} (h : p.goto offset = some p') : p'.length 
   case cons.succ hi _ => exact Nat.le_succ_of_le (hi h)
 
 -- The execution function for a given stack machine program.
+set_option linter.unusedVariables false in
 def exec : Program → Stack → Option Stack
   | [],       stack => stack
   | hd :: tl, stack =>
@@ -336,7 +337,7 @@ theorem lower_hEquiv (t : Term τ) : t ≈ lower t := by
   case ite hc hp hn => exact lower_ite_hEquiv hc hp hn
 
 -- The definition of the compiler. It constant folds and then lowers to a stack machine program.
-def compile {τ : Ty} (t : Term τ) : Program :=
+def compile (t : Term τ) : Program :=
   lower (constFold t)
 
 -- Compilation is semantics preserving.
