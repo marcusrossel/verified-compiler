@@ -316,7 +316,7 @@ theorem lower_ite_hEquiv {cond : Term .bool} {pos neg : Term τ}
     have he := exec_goto (jez_zero pl []) hg
     simp only [prog₁, singleton_append, he]
     -- Close the goal by establishing that `eval` yields `neg.eval`.
-    simp only [eval, eq_false_of_toNat_eq_zero h, hn]
+    simp_all only [prog₂, prog₃, eval, eq_false_of_toNat_eq_zero h]
   case succ n =>
     -- Peel off the leading `jez`.
     have he := exec_goto (jez_succ n pl []) (goto_zero prog₂)
