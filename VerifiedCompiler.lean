@@ -146,7 +146,7 @@ def exec : Program → Stack → Option Stack
       | none   => none
       | some p => exec p stack
 termination_by p => p.length
-decreasing_by simp_arith [goto_decreasing h]
+decreasing_by simp +arith [goto_decreasing h]
 
 end Program
 
